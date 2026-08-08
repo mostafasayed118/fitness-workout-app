@@ -1,0 +1,83 @@
+import 'package:fitness_workout_app_1/core/utils/app_assets.dart';
+import 'package:fitness_workout_app_1/core/utils/app_colors.dart';
+import 'package:fitness_workout_app_1/widget/normal_button.dart';
+import 'package:flutter/material.dart';
+
+import '../view/login_and_register/login_view.dart';
+import '../widget/round_textfield.dart';
+
+class PasswordForgetCodePage extends StatefulWidget {
+  const PasswordForgetCodePage({super.key});
+
+  @override
+  State<PasswordForgetCodePage> createState() => _PasswordForgetCodePageState();
+}
+
+class _PasswordForgetCodePageState extends State<PasswordForgetCodePage> {
+  @override
+  Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+
+    return Scaffold(
+      backgroundColor: AppColor.white,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                SizedBox(height: media.width * 0.01),
+                Image.asset(
+                  'assets/images/email_with_encrypted_password.png',
+                  width: media.width * 0.4,
+                ),
+                SizedBox(height: media.width * 0.05),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Please Enter The 4 Digit Code Sent To Your Email",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppColor.primaryColor1,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Khand',
+                        ),
+                      ),
+                      SizedBox(height: media.width * 0.06),
+                      RoundTextfield(
+                        hitText: 'Email',
+                        iconPath: AppAssets.emailIcon,
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      SizedBox(height: media.width * 0.2),
+                      NormalButton(
+                        textColor: AppColor.primaryColor1,
+                        text: 'Send',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginView(),
+                            ),
+                          );
+                        },
+                        backgroundColor: AppColor.white,
+                        widthSize: 330,
+                        heightSize: 50,
+                        borderColor: AppColor.primaryColor1,
+                        fontSize: 32,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,13 @@
+ apple_pie
+ bibimbap
+ cannoli
+ Soybeans
+ falafel
+ french_toast
+ ice_cream
+ ramen_soup
+ sushi
+ tiramisu
+ pizze
+ risotto
+ steak

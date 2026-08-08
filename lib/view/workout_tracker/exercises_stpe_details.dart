@@ -1,0 +1,330 @@
+import 'package:fitness_workout_app_1/core/utils/app_assets.dart';
+import 'package:fitness_workout_app_1/core/utils/app_strings.dart';
+import 'package:fitness_workout_app_1/view/home/blank_view.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
+
+import '../../core/utils/app_colors.dart';
+import '../../widget/normal_button.dart';
+// import '../../common_widget/round_button.dart';
+import '../../widget/step_detail_row.dart';
+import '../main_tab/select_view.dart';
+
+class ExercisesStepDetails extends StatefulWidget {
+  final Map eObj;
+  const ExercisesStepDetails({super.key, required this.eObj});
+
+  @override
+  State<ExercisesStepDetails> createState() => _ExercisesStepDetailsState();
+}
+
+class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
+  List stepArr = [
+    {
+      "no": "01",
+      "title": "Spread Your Arms",
+      "detail":
+          "To make the gestures feel more relaxed, stretch your arms as you start this movement. No bending of hands.",
+    },
+    {
+      "no": "02",
+      "title": "Rest at The Toe",
+      "detail":
+          "The basis of this movement is jumping. Now, what needs to be considered is that you have to use the tips of your feet",
+    },
+    {
+      "no": "03",
+      "title": "Adjust Foot Movement",
+      "detail":
+          "Jumping Jack is not just an ordinary jump. But, you also have to pay close attention to leg movements.",
+    },
+    {
+      "no": "04",
+      "title": "Clapping Both Hands",
+      "detail":
+          "This cannot be taken lightly. You see, without realizing it, the clapping of your hands helps you to keep your rhythm while doing the Jumping Jack",
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColor.backgroundColor,
+        centerTitle: true,
+        elevation: 0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            height: 40,
+            width: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              // color: TColor.lightGray,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Image.asset(
+              AppAssets.closeIcon,
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SelectView()),
+              );
+            },
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              height: 40,
+              width: 40,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                // color: TColor.lightGray,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Image.asset(
+                AppAssets.twoDotsIcon,
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: media.width,
+                    height: media.width * 0.42,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: AppColor.primaryG1,
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.asset(
+                      "assets/images/Video_Section.png",
+                      width: media.width,
+                      height: media.width * 0.43,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  Container(
+                    width: media.width,
+                    height: media.width * 0.43,
+                    decoration: BoxDecoration(
+                      color: AppColor.black.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/images/Play.png",
+                      width: 28,
+                      height: 28,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 15),
+              Text(
+                widget.eObj["title"].toString(),
+                style: TextStyle(
+                  color: AppColor.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: AppStrings.fontFamilyPoppins,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                "Easy | 390 Calories Burn", //come from api
+                style: TextStyle(
+                  color: AppColor.gray,
+                  fontSize: 13,
+                  fontFamily: AppStrings.fontFamilyHind,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 15),
+              Text(
+                "Descriptions",
+                style: TextStyle(
+                  color: AppColor.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: AppStrings.fontFamilyPoppins,
+                ),
+              ),
+              const SizedBox(height: 4),
+              ReadMoreText(
+                'A jumping jack, also known as a star jump and called a side-straddle hop in the US military, is a physical jumping exercise performed by jumping to a position with the legs spread wide A jumping jack, also known as a star jump and called a side-straddle hop in the US military, is a physical jumping exercise performed by jumping to a position with the legs spread wide', // come from api
+                trimLines: 4,
+                colorClickableText: AppColor.red,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: ' Read More ...',
+                trimExpandedText: ' Read Less',
+                style: TextStyle(
+                  color: AppColor.gray,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: AppStrings.fontFamilyHind,
+                ),
+                moreStyle: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppColor.primaryColor4,
+                ),
+              ),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "How To Do It",
+                    style: TextStyle(
+                      color: AppColor.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: AppStrings.fontFamilyPoppins,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "${stepArr.length} Steps",
+                      style: TextStyle(
+                        color: AppColor.gray,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: AppStrings.fontFamilyHind,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: stepArr.length,
+                itemBuilder: ((context, index) {
+                  var sObj = stepArr[index] as Map? ?? {};
+
+                  return StepDetailRow(
+                    sObj: sObj,
+                    isLast: stepArr.last == sObj,
+                  );
+                }),
+              ),
+              SizedBox(height: media.height * 0.02),
+              Text(
+                "Custom Repetitions",
+                style: TextStyle(
+                  color: AppColor.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: AppStrings.fontFamilyPoppins,
+                ),
+              ),
+              SizedBox(
+                height: 150,
+                child: CupertinoPicker.builder(
+                  itemExtent: 40,
+                  selectionOverlay: Container(
+                    width: double.maxFinite,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColor.gray.withOpacity(0.2),
+                          width: 1,
+                        ),
+                        bottom: BorderSide(
+                          color: AppColor.gray.withOpacity(0.2),
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+                  onSelectedItemChanged: (index) {},
+                  childCount: 60,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/burn.png",
+                          width: 15,
+                          height: 15,
+                          fit: BoxFit.contain,
+                        ),
+                        Text(
+                          " ${(index + 1) * 15} Calories Burn",
+                          style: TextStyle(
+                            color: AppColor.gray,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          " ${index + 1} ",
+                          style: TextStyle(
+                            color: AppColor.gray,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          " times",
+                          style: TextStyle(color: AppColor.gray, fontSize: 16),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              NormalButton(
+                textColor: AppColor.primaryColor1,
+                text: 'Save',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const BlankView()),
+                  );
+                },
+                backgroundColor: AppColor.white,
+                widthSize: 315,
+                heightSize: 60,
+                borderColor: AppColor.primaryColor1,
+                fontSize: 32,
+              ),
+              const SizedBox(height: 18),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
