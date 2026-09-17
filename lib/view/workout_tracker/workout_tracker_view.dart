@@ -194,7 +194,7 @@ class _WorkoutTrackerViewState extends State<WorkoutTrackerView> {
                             }).toList();
                           },
                       touchTooltipData: LineTouchTooltipData(
-                        tooltipBgColor: AppColor.secondaryColor1,
+                        getTooltipColor: (_) => AppColor.secondaryColor1,
                         tooltipRoundedRadius: 20,
                         getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
                           return lineBarsSpot.map((lineBarSpot) {
@@ -416,7 +416,7 @@ class _WorkoutTrackerViewState extends State<WorkoutTrackerView> {
   LineTouchData get lineTouchData1 => LineTouchData(
     handleBuiltInTouches: true,
     touchTooltipData: LineTouchTooltipData(
-      tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+      getTooltipColor: (_) => Colors.blueGrey.withOpacity(0.8),
     ),
   );
 
